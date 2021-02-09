@@ -10,7 +10,7 @@
     <x-includes.nav />
 
     <div class="container mx-auto flex flex-wrap py-6">
-        <x-blog.post />
+        <livewire:blog.details />
     </div>
 
     <x-includes.footer />
