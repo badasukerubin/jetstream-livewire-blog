@@ -1,4 +1,3 @@
 <div>
-    {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
-    <x-blog.detail />
+    <x-blog.detail :details='$details' />
 </div>

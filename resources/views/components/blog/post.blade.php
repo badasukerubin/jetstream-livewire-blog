@@ -2,5 +2,5 @@
 
     <x-blog.article />
 
-    <x-includes.pagination />
+    {{-- <x-includes.pagination /> --}}
 </section>
