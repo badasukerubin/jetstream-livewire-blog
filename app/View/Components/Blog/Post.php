@@ -2,18 +2,28 @@
 
 namespace App\View\Components\Blog;
 
+use App\Queries\Posts\EloquentPostQuery;
 use Illuminate\View\Component;
 
 class Post extends Component
 {
     /**
+     * All Posts
+     *
+     *@var Collection $post
+     */
+    public $posts;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(EloquentPostQuery $eloquentPostQuery)
     {
-        //
+        $requestParams = request()->toArray();
+
+        $this->posts = $eloquentPostQuery->getPosts($requestParams, 'list');
     }
 
     /**

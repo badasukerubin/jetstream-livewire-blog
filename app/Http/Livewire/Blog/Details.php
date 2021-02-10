@@ -2,16 +2,20 @@
 
 namespace App\Http\Livewire\Blog;
 
-use App\Models\Post;
+use App\Queries\Posts\EloquentPostQuery;
 use Livewire\Component;
 
 class Details extends Component
 {
     protected $details;
 
-    public function mount(Post $post)
+    public function mount(EloquentPostQuery $eloquentPostQuery)
     {
-        $this->details = $post->where('id', request()->id)->first();
+        $requestParams = request()->toArray();
+        $requestParams['user_id'] = auth()->id();
+        $requestParams['id'] = request()->id;
+
+        $this->details = $eloquentPostQuery->getPosts($requestParams, 'details');
     }
 
     public function render()
