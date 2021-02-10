@@ -25,4 +25,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/blog/create', function () {
+        return view('blog.create');
+    })->name('dashboard.blog.create');
+
+    Route::get('/blog/read', function () {
+        return view('blog.read');
+    })->name('dashboard.blog.read');
 });
