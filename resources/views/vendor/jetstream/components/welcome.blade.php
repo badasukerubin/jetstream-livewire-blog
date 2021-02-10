@@ -28,8 +28,8 @@
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500">
-                <p>You have created a total of {} posts</p>
-                <p>There are a total of {} posts on the platform</p>
+                <p>You have created a total of {{auth()->user()->post->count()}} posts</p>
+                <p>There are a total of {{\App\Models\Post::count()}} posts on the platform</p>
             </div>
 
             <a href="{{route('dashboard.blog.create')}}">
