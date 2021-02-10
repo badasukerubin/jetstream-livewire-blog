@@ -32,7 +32,7 @@
                 <p>There are a total of {} posts on the platform</p>
             </div>
 
-            <a href="#">
+            <a href="{{route('dashboard.blog.create')}}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                     <div>Create a new post</div>
 
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#">
+            <a href="{{route('dashboard.blog.read')}}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                     <div>View your posts</div>
 
