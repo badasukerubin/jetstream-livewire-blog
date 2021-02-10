@@ -2,16 +2,14 @@
 
 namespace App\View\Components\Blog;
 
-use App\Models\Post;
 use Illuminate\View\Component;
 
 class Article extends Component
 {
-    const PAGINATE = 10;
     /**
-     * All Posts
+     * The posts.
      *
-     *@var Collection $post
+     * @var string
      */
     public $posts;
 
@@ -20,9 +18,9 @@ class Article extends Component
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct($posts)
     {
-        $this->posts = $post->paginate(self::PAGINATE);
+        $this->posts = $posts;
     }
 
     /**

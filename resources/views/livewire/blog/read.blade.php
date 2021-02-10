@@ -1,3 +1,3 @@
 <div>
-    <x-blog.article />
+    <x-blog.article :posts='$posts' />
 </div>
