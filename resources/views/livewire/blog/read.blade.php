@@ -1,1 +1,3 @@
-<x-blog.article />
+<div>
+    <x-blog.article />
+</div>

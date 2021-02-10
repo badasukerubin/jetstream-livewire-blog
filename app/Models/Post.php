@@ -33,4 +33,14 @@ class Post extends Model
         'description',
         'user_id',
     ];
+
+    /**
+    * Post has many user
+    *
+    * @return void
+    */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

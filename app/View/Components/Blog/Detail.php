@@ -2,18 +2,26 @@
 
 namespace App\View\Components\Blog;
 
+use App\Models\Post;
 use Illuminate\View\Component;
 
 class Detail extends Component
 {
     /**
+     * The post details.
+     *
+     * @var string
+     */
+    public $details;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
