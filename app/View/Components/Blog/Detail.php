@@ -8,20 +8,36 @@ use Illuminate\View\Component;
 class Detail extends Component
 {
     /**
-     * The post details.
+     * The current post.
      *
-     * @var string
+     * @var Post $current
      */
-    public $details;
+    public $current;
+
+    /**
+     * The previous post.
+     *
+     * @var Post $prev
+     */
+    public $prev;
+
+    /**
+     * The next post.
+     *
+     * @var Post $next
+     */
+    public $next;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($current, $prev, $next)
     {
-        $this->details = $details;
+        $this->current = $current;
+        $this->prev = $prev;
+        $this->next = $next;
     }
 
     /**

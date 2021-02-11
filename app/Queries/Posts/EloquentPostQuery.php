@@ -10,18 +10,41 @@ class EloquentPostQuery
 {
     const PAGINATE = 10;
 
-    public function getPosts($requestParams = null, $type)
+    public function getPosts($requestParams = null)
     {
         $query = Post::query();
         $this->applySelectStatement($query);
         $this->applyJoin($query);
         $this->applyRequestParams($query, $requestParams);
-        if ($type == 'details') {
-            $this->applyPreviousAndNextPost($query);
+
+        $query = $query->paginate(self::PAGINATE);
+        $query->appends(request()->all());
+        return $query;
+    }
+
+    public function getOnePost($requestParams = null)
+    {
+        $query = Post::query();
+        $this->applySelectStatement($query);
+        $this->applyRequestID($query, $requestParams);
+        $this->applyJoin($query);
+
+        return $query;
+    }
+
+    public function getPrevNextPosts($postId, $type)
+    {
+        $query = Post::query();
+        $this->applySelectStatement($query);
+        $this->applyJoin($query);
+
+        if ($type == 'prev') {
+            $query->where('posts.id', '<', $postId);
+        } else {
+            $query->where('posts.id', '>', $postId);
         }
-        $paginator = $query->paginate(self::PAGINATE);
-        $paginator->appends(request()->all());
-        return $paginator;
+
+        return $query;
     }
 
     private function applySelectStatement(Builder $query)
@@ -35,6 +58,11 @@ class EloquentPostQuery
         );
     }
 
+    private function applyRequestID(Builder $query, $requestParams)
+    {
+        $query->where('posts.id', $requestParams['id']);
+    }
+
     private function applyJoin(Builder $query)
     {
         $query->leftJoin('users as u', 'u.id', 'posts.user_id');
@@ -44,27 +72,18 @@ class EloquentPostQuery
     {
         if (isset($requestParams['user_id'])) {
             $userId = $requestParams['user_id'];
-            $query->leftJoin('users as us', function (JoinClause $query) use ($userId) {
-                $query->on('posts.user_id', '=', 'us.id')
-                    ->where('us.id', $userId);
-            });
+            // $query->leftJoin('users as us', function (JoinClause $query) use ($userId) {
+            // $query->on('posts.user_id', '=', 'u.id')
+            $query->where('u.id', $userId);
+            // });
         }
-        if (isset($requestParams['id'])) {
-            $query->where('posts.id', $requestParams['id']);
-        }
+
         if (isset($requestParams['sort_by'])) {
             if ($requestParams['sort_by'] == 'oldest') {
                 $query->orderBy('publication_date', 'asc');
-            } elseif ($requestParams['sort_by'] == 'oldest') {
+            } elseif ($requestParams['sort_by'] == 'latest') {
                 $query->orderBy('publication_date', 'desc');
             }
         }
-    }
-
-    private function applyPreviousAndNextPost(Builder $query)
-    {
-        $postId = $query->first()->post_id;
-        $query->orWhere('posts.id', '<', $postId)->max('posts.id');
-        $query->orWhere('posts.id', '>', $postId)->min('posts.id');
     }
 }
