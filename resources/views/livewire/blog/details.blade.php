@@ -1,3 +1,3 @@
 <div>
-    <x-blog.detail :details='$details' />
+    <x-blog.detail :current='$current' :prev='$prev' :next='$next' />
 </div>

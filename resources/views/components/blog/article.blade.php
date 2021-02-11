@@ -9,7 +9,7 @@
             <p href="{{route('blog.details', $post->post_id)}}" class="text-sm pb-3">
                 By <a href="{{route('blog.details', $post->post_id)}}"
                     class="font-semibold hover:text-gray-800">{{$post->user_name}}</a>,
-                Published {{$post->publication_date->format('M d, Y')}}
+                Published {{$post->publication_date->format('M d, Y g:i A')}}
             </p>
             <a href="{{route('blog.details', $post->post_id)}}"
                 class="pb-6">{{\Illuminate\Support\Str::limit(strip_tags($post->description), 250, $end='...')}}</a>
@@ -19,9 +19,9 @@
                 <i class="fas fa-arrow-right"></i></a>
         </div>
     </article>
-    {!! $posts->render() !!}
     @empty
     <br />
     There are no posts yet!
     @endforelse
+    {!! $posts->render() !!}
 </div>

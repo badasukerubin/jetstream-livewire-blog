@@ -19,7 +19,7 @@ class Read extends Component
         $requestParams = request()->toArray();
         $requestParams['user_id'] = auth()->id();
 
-        $this->posts = $eloquentPostQuery->getPosts($requestParams, 'list');
+        $this->posts = $eloquentPostQuery->getPosts($requestParams);
     }
 
     public function render()

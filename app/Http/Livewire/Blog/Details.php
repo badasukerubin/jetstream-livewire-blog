@@ -7,21 +7,26 @@ use Livewire\Component;
 
 class Details extends Component
 {
-    protected $details;
+    protected $prev;
+    protected $next;
+    protected $current;
 
     public function mount(EloquentPostQuery $eloquentPostQuery)
     {
         $requestParams = request()->toArray();
-        $requestParams['user_id'] = auth()->id();
         $requestParams['id'] = request()->id;
 
-        $this->details = $eloquentPostQuery->getPosts($requestParams, 'details');
+        $this->current = $eloquentPostQuery->getOnePost($requestParams)->first();
+        $this->prev = $eloquentPostQuery->getPrevNextPosts(request()->id, 'prev')->latest('post_id')->first();
+        $this->next = $eloquentPostQuery->getPrevNextPosts(request()->id, 'next')->oldest('post_id')->first();
     }
 
     public function render()
     {
         $data = [
-            'details' => $this->details,
+            'current' => $this->current,
+            'prev' => $this->prev,
+            'next' => $this->next,
         ];
 
         return view('livewire.blog.details')->with($data);
