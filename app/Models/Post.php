@@ -32,6 +32,7 @@ class Post extends Model
         'title',
         'description',
         'user_id',
+        'publication_date'
     ];
 
     /**
