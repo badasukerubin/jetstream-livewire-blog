@@ -6,6 +6,7 @@
 
 ## Laravel Jetstream (Livewire) Simple Blog
 Tailwind Blog Template: https://github.com/davidgrzyb/tailwind-blog-template
+
 Ray Dump Debugging: http://myray.app/
 
 ## Installation
