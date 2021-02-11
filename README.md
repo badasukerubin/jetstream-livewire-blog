@@ -36,22 +36,27 @@ php artisan key:generate
 php artisan migrate
 ```
 
-6. Install node modules
+6. Run all seeders
+```
+php artisan db:seed
+```
+
+7. Install node modules
 ```
 npm install
 ```
 
-7. Complie scripts
+8. Complie scripts
 ```
 npm run dev
 ```
 
-8. Serve the application
+9. Serve the application
 ```
 php artisan serve
 ```
 
-9. Clear all cache data
+10. Clear all cache data
 ```
 php artisan optimize:clear
 ```
