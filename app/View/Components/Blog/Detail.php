@@ -8,23 +8,23 @@ use Illuminate\View\Component;
 class Detail extends Component
 {
     /**
-     * The post details.
+     * The current post.
      *
-     * @var string
+     * @var Post $current
      */
     public $current;
 
     /**
-     * The post details.
+     * The previous post.
      *
-     * @var string
+     * @var Post $prev
      */
     public $prev;
 
     /**
-     * The post details.
+     * The next post.
      *
-     * @var string
+     * @var Post $next
      */
     public $next;
 

@@ -7,8 +7,25 @@ use Livewire\Component;
 
 class Details extends Component
 {
+    /**
+     * Previous post
+     *
+     * @var Post $prev
+     */
     protected $prev;
+
+    /**
+     * Next post
+     *
+     * @var Post $next
+     */
     protected $next;
+
+    /**
+     * Current post
+     *
+     * @var Post $current
+     */
     protected $current;
 
     public function mount(EloquentPostQuery $eloquentPostQuery)
