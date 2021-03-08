@@ -13,7 +13,7 @@ Ray Dump Debugging: http://myray.app/
 
 1. Clone the repo
 ```
-git clone https://github.com/000kelvin/square1-blog.git
+git clone https://github.com/000kelvin/jetstream-livewire-blog.git
 ```
 
 2. Create a local environment and update the variables
